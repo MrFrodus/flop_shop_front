@@ -1,11 +1,5 @@
-import Nav from "./Nav.tsx";
-
 function Home() {
-  return (
-    <div>
-      <Nav />
-    </div>
-  );
+  return <div>Home</div>;
 }
 
 export default Home;

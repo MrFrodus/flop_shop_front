@@ -32,20 +32,13 @@ module.exports = {
   plugins: ["@typescript-eslint", "react", "prettier"],
   rules: {
     "react/react-in-jsx-scope": 0,
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        js: "never",
-        mjs: "never",
-        jsx: "never",
-      },
-    ],
+    "import/extensions": ["error"],
     "prettier/prettier": [
       "error",
       {
         endOfLine: "auto",
       },
     ],
+    "no-param-reassign": 0,
   },
 };
