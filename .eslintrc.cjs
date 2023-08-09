@@ -37,8 +37,46 @@ module.exports = {
       "error",
       {
         endOfLine: "auto",
+        singleAttributePerLine: true,
       },
     ],
     "no-param-reassign": 0,
+    "react/function-component-definition": [
+      2,
+      {
+        namedComponents: "arrow-function",
+        unnamedComponents: "arrow-function",
+      },
+    ],
+    "react/jsx-max-props-per-line": [1, { when: "always" }],
+    "react/jsx-wrap-multilines": [
+      "error",
+      {
+        declaration: "parens-new-line",
+        assignment: "parens-new-line",
+        return: "parens-new-line",
+        arrow: "parens-new-line",
+        condition: "parens-new-line",
+        logical: "parens-new-line",
+        prop: "parens-new-line",
+      },
+    ],
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        required: {
+          some: ["nesting", "id"],
+        },
+      },
+    ],
+    "jsx-a11y/label-has-for": [
+      "error",
+      {
+        required: {
+          some: ["nesting", "id"],
+        },
+      },
+    ],
+    "react/jsx-props-no-spreading": "off",
   },
 };

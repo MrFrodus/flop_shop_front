@@ -1,6 +1,6 @@
 import { types } from "mobx-state-tree";
 
-const category = types.model("Category", {
+const ICategory = types.model("Category", {
   id: types.integer,
   parent_id: types.maybeNull(types.integer),
   title: types.string,
@@ -11,4 +11,4 @@ const category = types.model("Category", {
   updated_at: types.maybeNull(types.Date),
 });
 
-export default category;
+export default ICategory;

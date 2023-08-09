@@ -19,12 +19,16 @@ const Categories = observer(() => {
   }, [categoryStore]);
 
   return (
-    <div className="grid grid-cols-[1fr_1fr_1fr] md:grid-cols-[1fr_1fr_1fr_1fr] gap-4 my-10 mx-5 gap-y-8 drop-shadow-md max-w-full">
+    <div
+      className="grid grid-cols-[1fr_1fr_1fr] 
+      md:grid-cols-[1fr_1fr_1fr_1fr] 
+      gap-4 my-10 mx-5 gap-y-8 drop-shadow-md max-w-full"
+    >
       {categoryStore.categories.map((item) => {
         return (
           <div
             className="h-72 w-72 border-2 border-sky-500 
-          font-bold text-lg min-w-full max-w-full"
+            font-bold text-lg min-w-full max-w-full"
             key={item.id}
           >
             <Link to="/account">

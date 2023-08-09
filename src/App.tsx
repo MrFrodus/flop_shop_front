@@ -6,27 +6,55 @@ import Categories from "./components/Categories";
 import Nav from "./components/Nav";
 import Account from "./components/Account";
 import Cart from "./components/Cart";
+import Register from "./components/Register";
+import SignIn from "./components/SignIn";
 
-export function App() {
+export const App = () => {
   return (
     <div>
       <Nav />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/add" element={<AddProduct />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/"
+          element={<Home />}
+        />
+        <Route
+          path="*"
+          element={<NotFound />}
+        />
+        <Route
+          path="/add"
+          element={<AddProduct />}
+        />
+        <Route
+          path="/categories"
+          element={<Categories />}
+        />
+        <Route
+          path="/account"
+          element={<Account />}
+        />
+        <Route
+          path="/cart"
+          element={<Cart />}
+        />
+        <Route
+          path="/signIn"
+          element={<SignIn />}
+        />
+        <Route
+          path="/register"
+          element={<Register />}
+        />
       </Routes>
     </div>
   );
-}
+};
 
-export function WrappedApp() {
+export const WrappedApp = () => {
   return (
     <HashRouter>
       <App />
     </HashRouter>
   );
-}
+};

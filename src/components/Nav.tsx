@@ -5,17 +5,23 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import abis from "../assets/abis.png";
 
-function Nav() {
+const Nav = () => {
   return (
     <nav>
       <div className="h-20 flex items-center justify-between">
         <div className="flex flex-row items-center w-2/5">
           <div>
-            <GiHamburgerMenu size="2rem" className="m-2" />
+            <GiHamburgerMenu
+              size="2rem"
+              className="m-2"
+            />
           </div>
         </div>
         <div className="flex w-20 w-min-0 flex-shrink-0 ">
-          <img src={abis} alt="abis_icon" />
+          <img
+            src={abis}
+            alt="abis_icon"
+          />
         </div>
         <div />
         <div className="flex flex-row text-sm">
@@ -35,13 +41,19 @@ function Nav() {
             </button>
           </form>
           <div>
-            <Link className="flex items-center flex-col mr-4" to="/account">
+            <Link
+              className="flex items-center flex-col mr-4"
+              to="/account"
+            >
               <BiUser size="20px" />
               Account
             </Link>
           </div>
           <div>
-            <Link className="flex items-center flex-col mr-4" to="/cart">
+            <Link
+              className="flex items-center flex-col mr-4"
+              to="/cart"
+            >
               <AiOutlineShoppingCart size="20px" />
               Cart
             </Link>
@@ -58,9 +70,12 @@ function Nav() {
         <li className="hover:bg-slate-200 hover:text-black h-8 flex items-center px-2">
           <Link to="/categories">Categories</Link>
         </li>
+        <li className="hover:bg-slate-200 hover:text-black h-8 flex items-center px-2">
+          <Link to="/register">Register</Link>
+        </li>
       </ul>
     </nav>
   );
-}
+};
 
 export default Nav;

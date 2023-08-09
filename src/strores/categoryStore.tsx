@@ -1,10 +1,10 @@
 import { types, flow, getParent, cast } from "mobx-state-tree";
 import { categoryGetAllRequest } from "../api/category.api";
-import category from "../models/category";
+import ICategory from "../models/category";
 
 const categoryStore = types
   .model("categoryStore", {
-    categories: types.optional(types.array(category), []),
+    categories: types.optional(types.array(ICategory), []),
   })
   .actions((self) => {
     const getAllCategories = flow(function* () {
