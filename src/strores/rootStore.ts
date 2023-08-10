@@ -9,7 +9,18 @@ const RootStore = types.model("RootStore", {
 
 const rootStore = RootStore.create({
   categoriesStore: { categories: [] },
-  profileStore: {},
+  profileStore: {
+    user: {
+      id: 0,
+      first_name: "",
+      last_name: "",
+      mobile: "",
+      email: "",
+      admin: 0,
+      vendor: 0,
+    },
+    isAuth: false,
+  },
 });
 
 export type Root = Instance<typeof rootStore>;

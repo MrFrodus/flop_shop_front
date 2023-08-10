@@ -7,3 +7,8 @@ export interface IRegistrationBody {
   admin?: number;
   vendor?: number;
 }
+
+export interface ILogInBody {
+  email: string;
+  password: string;
+}

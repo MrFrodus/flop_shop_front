@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { WrappedApp } from "./App.tsx";
+import { WrappedApp } from "./App";
 import "./index.css";
 
 const rootElement = document.getElementById("root") as HTMLElement;

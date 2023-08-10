@@ -1,10 +1,12 @@
 import api from "./api";
-import { IRegistrationBody } from "../types/api.types";
+import { IRegistrationBody, ILogInBody } from "../types/api.types";
 
-const registrationRequest = (newUser: IRegistrationBody) => {
+export const registrationRequest = (newUser: IRegistrationBody) => {
   newUser.admin = 0;
   newUser.vendor = 1;
   return api.post("/auth/reg", newUser);
 };
 
-export default registrationRequest;
+export const logInRequest = (logInData: ILogInBody) => {
+  return api.post("/auth/login", logInData);
+};

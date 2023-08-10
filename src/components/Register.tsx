@@ -13,7 +13,6 @@ const Register = observer(() => {
   const { profileStore } = rootStore;
 
   const onSubmit = async (values: any) => {
-    console.log(values);
     try {
       await profileStore.register({
         first_name: values.first_name,
@@ -25,8 +24,6 @@ const Register = observer(() => {
       setSuccess(true);
     } catch (error: unknown | AxiosError) {
       if (axios.isAxiosError(error)) {
-        console.log(error);
-        console.log(error!.response!.data.message);
         setErrorMsg(error!.response!.data.message);
       } else {
         console.log(error);
