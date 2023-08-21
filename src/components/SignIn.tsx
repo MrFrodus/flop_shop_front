@@ -38,7 +38,7 @@ const SignIn = observer(() => {
       <div
         className="flex border rounded-md flex-col 
           items-center w-1/5 h-full my-4 min-w-[25rem]
-          bg-slate-100"
+          bg-slate-100 drop-shadow-md"
       >
         <h1 className="m-8 text-xl">Sign In</h1>
         <form

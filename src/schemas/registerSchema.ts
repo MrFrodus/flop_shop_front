@@ -17,7 +17,7 @@ const registerValidationSchema = yup.object({
     .min(6, "Password must be at least 5 characters"),
   confirm_pwd: yup
     .string()
-    .oneOf([yup.ref("Password"), ""], "Passwords must match")
+    .oneOf([yup.ref("password"), ""], "Passwords must match")
     .required("Required"),
 });
 

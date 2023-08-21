@@ -1,10 +1,12 @@
 import { types, Instance } from "mobx-state-tree";
 import categoriesStore from "./categoryStore";
 import profileStore from "./profileStore";
+import productStore from "./productStore";
 
 const RootStore = types.model("RootStore", {
   categoriesStore,
   profileStore,
+  productStore,
 });
 
 const rootStore = RootStore.create({
@@ -21,6 +23,7 @@ const rootStore = RootStore.create({
     },
     isAuth: false,
   },
+  productStore: {},
 });
 
 export type Root = Instance<typeof rootStore>;

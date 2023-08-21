@@ -3,12 +3,15 @@ import { observer } from "mobx-react-lite";
 import { useFormik } from "formik";
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
+import { useErrorBoundary } from "react-error-boundary";
 import registerSchema from "../schemas/registerSchema";
 import { rootStore } from "../strores/rootStore";
 
 const Register = observer(() => {
   const [errorMsg, setErrorMsg] = useState("");
   const [success, setSuccess] = useState(false);
+
+  const { showBoundary } = useErrorBoundary();
 
   const { profileStore } = rootStore;
 
@@ -23,10 +26,14 @@ const Register = observer(() => {
       });
       setSuccess(true);
     } catch (error: unknown | AxiosError) {
-      if (axios.isAxiosError(error)) {
+      if (
+        axios.isAxiosError(error) &&
+        error!.response! &&
+        error!.response!.status === 409
+      ) {
         setErrorMsg(error!.response!.data.message);
       } else {
-        console.log(error);
+        showBoundary(error);
       }
     }
   };
@@ -54,7 +61,7 @@ const Register = observer(() => {
   });
 
   return (
-    <div className="flex justify-center relative">
+    <div className="flex justify-center relative flex-col items-center">
       {success ? (
         <div className="flex flex-col items-center mt-4">
           <h1 className="py-2 text-lg font-bold">Success!</h1>
@@ -76,7 +83,7 @@ const Register = observer(() => {
         <div
           className="flex border rounded-md flex-col 
           items-center w-2/5 h-full my-4 min-w-[25rem]
-          bg-slate-100"
+          bg-slate-100 drop-shadow-md"
         >
           <h2 className="m-8 text-xl">Registration form</h2>
           <form

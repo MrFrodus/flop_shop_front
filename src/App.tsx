@@ -1,60 +1,80 @@
-import { Route, HashRouter, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import NotFound from "./components/NotFound";
-import AddProduct from "./components/AddProduct";
-import Categories from "./components/Categories";
-import Nav from "./components/Nav";
-import Account from "./components/Account";
-import Cart from "./components/Cart";
-import Register from "./components/Register";
-import SignIn from "./components/SignIn";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Routes, Route } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
+import {
+  Home,
+  NotFound,
+  AddProduct,
+  Nav,
+  Account,
+  Cart,
+  Register,
+  SignIn,
+  ProtectedRoute,
+  CategoryProducts,
+  SearchProducts,
+  ErrorFallback,
+} from "./components/index";
 
-export const App = () => {
+const queryClient = new QueryClient();
+
+const App = () => {
   return (
-    <div>
-      <Nav />
-      <Routes>
-        <Route
-          path="/"
-          element={<Home />}
-        />
-        <Route
-          path="*"
-          element={<NotFound />}
-        />
-        <Route
-          path="/add"
-          element={<AddProduct />}
-        />
-        <Route
-          path="/categories"
-          element={<Categories />}
-        />
-        <Route
-          path="/account"
-          element={<Account />}
-        />
-        <Route
-          path="/cart"
-          element={<Cart />}
-        />
-        <Route
-          path="/signIn"
-          element={<SignIn />}
-        />
-        <Route
-          path="/register"
-          element={<Register />}
-        />
-      </Routes>
+    <div className="App">
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <QueryClientProvider client={queryClient}>
+          <Nav />
+          <Routes>
+            <Route
+              path="/register"
+              element={<Register />}
+            />
+            <Route
+              path="/"
+              element={<Home />}
+            />
+            <Route
+              path="*"
+              element={<NotFound />}
+            />
+
+            <Route
+              path="/add"
+              element={(
+                <ProtectedRoute>
+                  <AddProduct />
+                </ProtectedRoute>
+              )}
+            />
+            <Route
+              path="/account"
+              element={(
+                <ProtectedRoute>
+                  <Account />
+                </ProtectedRoute>
+              )}
+            />
+            <Route
+              path="/cart"
+              element={<Cart />}
+            />
+            <Route
+              path="/signIn"
+              element={<SignIn />}
+            />
+            <Route
+              path="/:category/:subcategory"
+              element={<CategoryProducts />}
+            />
+            <Route
+              path="/search"
+              element={<SearchProducts />}
+            />
+          </Routes>
+        </QueryClientProvider>
+      </ErrorBoundary>
     </div>
   );
 };
 
-export const WrappedApp = () => {
-  return (
-    <HashRouter>
-      <App />
-    </HashRouter>
-  );
-};
+export default App;

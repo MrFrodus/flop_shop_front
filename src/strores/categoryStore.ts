@@ -8,10 +8,7 @@ const categoryStore = types
   })
   .actions((self) => {
     const getAllCategories = flow(function* () {
-      console.log(123);
-
       const categories = yield categoryGetAllRequest();
-      console.log({ categories });
 
       self.categories = categories.data;
     });

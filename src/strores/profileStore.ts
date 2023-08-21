@@ -1,6 +1,10 @@
 import { types, flow, getParent, cast } from "mobx-state-tree";
 import Cookies from "js-cookie";
-import { registrationRequest, logInRequest } from "../api/auth.api";
+import {
+  registrationRequest,
+  logInRequest,
+  getUserByTokenRequest,
+} from "../api/auth.api";
 import user from "../models/user";
 import { IRegistrationBody, ILogInBody } from "../types/api.types";
 
@@ -36,7 +40,6 @@ const profileStore = types
 
     const logIn = flow(function* (logInData: ILogInBody) {
       const userData = yield logInRequest(logInData);
-      console.log(userData);
       // eslint-disable-next-line @typescript-eslint/naming-convention
       const { id, first_name, last_name, mobile, email, admin, vendor } =
         userData.data.user;
@@ -53,8 +56,6 @@ const profileStore = types
 
       self.isAuth = true;
 
-      console.log(userData.data.token);
-
       Cookies.set("token", userData.data.token);
     });
 
@@ -63,7 +64,12 @@ const profileStore = types
       Cookies.remove("token");
     };
 
-    return { register, logIn, logOut };
+    const getUserByToken = flow(function* (token: string) {
+      const userData = yield getUserByTokenRequest(token);
+      return userData;
+    });
+
+    return { register, logIn, logOut, cleanAuthData, getUserByToken };
   });
 
 export default profileStore;

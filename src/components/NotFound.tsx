@@ -1,12 +1,5 @@
-import { Link } from "react-router-dom";
-
 const NotFound = () => {
-  return (
-    <>
-      <div>NotFound</div>
-      <Link to="/">Go home</Link>
-    </>
-  );
+  return <div>NotFound</div>;
 };
 
 export default NotFound;
