@@ -4,7 +4,8 @@ import { IRegistrationBody, ILogInBody } from "../types/api.types";
 const registrationRequest = (newUser: IRegistrationBody) => {
   newUser.admin = 0;
   newUser.vendor = 1;
-  api.post("/auth/reg", newUser);
+
+  return api.post("/auth/reg", newUser);
 };
 
 const logInRequest = (logInData: ILogInBody) => {
