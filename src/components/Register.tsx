@@ -21,7 +21,7 @@ const Register = observer(() => {
         first_name: values.first_name,
         last_name: values.last_name,
         email: values.email,
-        mobile: values.mobile,
+        mobile: Number(values.mobile),
         password: values.password,
       });
       setSuccess(true);
