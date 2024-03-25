@@ -2,10 +2,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useFormik } from "formik";
 import { useState } from "react";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
+import { useErrorBoundary } from "react-error-boundary";
 import { rootStore } from "../strores/rootStore";
 
 const SignIn = observer(() => {
+  const { showBoundary } = useErrorBoundary();
+
   const [errorMsg, setErrorMsg] = useState("");
 
   const { profileStore } = rootStore;
@@ -17,10 +20,14 @@ const SignIn = observer(() => {
       await profileStore.logIn(values);
       navigate("/");
     } catch (error: unknown | AxiosError) {
-      if (axios.isAxiosError(error)) {
+      if (
+        axios.isAxiosError(error) &&
+        error!.response! &&
+        error!.response!.status === 401
+      ) {
         setErrorMsg(error!.response!.data.message);
       } else {
-        console.log(error);
+        showBoundary(error);
       }
     }
   };
@@ -87,7 +94,7 @@ const SignIn = observer(() => {
         <div className="mb-4">
           Don`t have an account?&nbsp;
           <Link
-            to="/signIn"
+            to="/register"
             className="underline hover:text-blue-500 "
           >
             Sign up
