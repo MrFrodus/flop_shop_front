@@ -78,5 +78,8 @@ module.exports = {
       },
     ],
     "react/jsx-props-no-spreading": "off",
+    "no-underscore-dangle": 0,
+    "no-nested-ternary": "off",
+    "import/prefer-default-export": "off",
   },
 };
