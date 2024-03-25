@@ -147,8 +147,8 @@ const Nav = observer(() => {
             ) : null}
           </>
         ) : (
-          <div className="h-16 flex justify-end">
-            <div className="flex flex-row">
+          <div className="h-16 flex justify-end border border-b-black">
+            <div className="flex flex- items-center">
               <button
                 type="button"
                 className="w-[70px] h-[35px] mr-4 rounded-md
